@@ -2,18 +2,20 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
-#include "opencv2/highgui.hpp"
-//#include "opencv2/aruco.hpp"
-//#include <opencv2/mcc.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/aruco.hpp>
+#include <opencv2/mcc.hpp>
 
-using namespace std;
+
 using namespace cv;
-//using namespace cv::aruco;
+using namespace std;
+using namespace cv::aruco;
+
 
 MyArucoDetector::MyArucoDetector()
 {
-	//dictionary = makePtr<Dictionary>(cv::aruco::getPredefinedDictionary(cv::aruco::DICT_4X4_100));
-	//parameters = makePtr<DetectorParameters>;
+	dictionary = makePtr<Dictionary>(cv::aruco::getPredefinedDictionary(cv::aruco::DICT_4X4_100));
+	parameters = makePtr<DetectorParameters>();
 }
 
 void MyArucoDetector::detect(Mat image, vector<ArucoMarkerPosition>& result)
@@ -21,7 +23,7 @@ void MyArucoDetector::detect(Mat image, vector<ArucoMarkerPosition>& result)
     vector<int> markerIds;
     vector<vector<Point2f>> markerCorners;
 
-    //detectMarkers(image, dictionary, markerCorners, markerIds);
+    detectMarkers(image, dictionary, markerCorners, markerIds);
 
     if (markerIds.empty()) {
         return;
